@@ -19,6 +19,9 @@ createFunction(
   async ({ event, step }) => {
     
     await step.sleep("pretend", "5s");
+
+    console.warn("Something is missing");
+    console.error("This is an error I want to track");
     
     const { steps: geminiSteps } = await step.ai.wrap(
       "gemini-generate-text", 
@@ -26,7 +29,12 @@ createFunction(
       {
       system: "you are a helpful assistant",
       prompt: "what is 2 + 2",
-      model: google("gemini-2.5-flash")
+      model: google("gemini-2.5-flash"),
+      experimental_telemetry: {
+        isEnabled: true,
+        recordInputs: true,
+        recordOutputs: true,
+      },
     }
   );
 
@@ -36,7 +44,12 @@ createFunction(
       {
       system: "you are a helpful assistant",
       prompt: "what is 2 + 2",
-      model: openai("gpt-4")
+      model: openai("gpt-4"),
+      experimental_telemetry: {
+        isEnabled: true,
+        recordInputs: true,
+        recordOutputs: true,
+      },
     }
   );
 
@@ -46,7 +59,12 @@ createFunction(
       {
       system: "you are a helpful assistant",
       prompt: "what is 2 + 2",
-      model: anthropic("claude-sonnet-4-0")
+      model: anthropic("claude-sonnet-4-0"),
+      experimental_telemetry: {
+        isEnabled: true,
+        recordInputs: true,
+        recordOutputs: true,
+      },
     }
   );
 
