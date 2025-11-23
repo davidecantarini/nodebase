@@ -5,13 +5,15 @@ import { dataTagErrorSymbol, useQueryClient, useSuspenseQuery } from "@tanstack/
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useWorkflowsParams } from "./use-workflows-params";
 
 
 export const useSuspenseWorkflows = () => {
 
     const trpc = useTRPC(); 
+    const [params] = useWorkflowsParams(); 
 
-    return useSuspenseQuery(trpc.workflows.getOne.queryOptions());
+    return useSuspenseQuery(trpc.workflows.getMany.queryOptions(params));
 
 };
 
@@ -24,7 +26,7 @@ export const useCreateWorkflow = () => {
         trpc.workflows.create.mutationOptions({
             onSuccess: (data) => {
                 toast.success('Workflow "${data.name}" created successfully');
-                queryClient.invalidateQueries(trpc.workflows.getOne.queryOptions(),
+                queryClient.invalidateQueries(trpc.workflows.getMany.queryOptions({}),
                 );
             },
             onError: (error) => {
