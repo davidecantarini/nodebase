@@ -15,7 +15,7 @@ baseNodeProps
     <div
       ref={ref}
       className={cn(
-        "bg-card text-card-foreground relative rounded-sm border border-muted-foreground hover:bg-accent",
+        "bg-card text-card-foreground relative rounded-sm border-width. border-muted-foreground hover:bg-accent",
         className,
       )}
       tabIndex={0}
