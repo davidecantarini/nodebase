@@ -19,6 +19,7 @@ import {
 import { NodeType } from "@/generated/prisma";
 import { Separator } from "./ui/separator";
 
+
 export type NodeTypeOption = {
     type: NodeType;
     label : string;
@@ -32,6 +33,12 @@ const triggerNodes: NodeTypeOption[] = [
         label: "Trigger manually",
         description: "Runs the flow on clicking a button. Good for getting started quickly",
         icon: MousePointerIcon
+    },
+    {
+        type: NodeType.GOOGLE_FORM_TRIGGER,
+        label: "Google Form",
+        description: "Runs the flow when a Google Form is submitted",
+        icon: "/logos/googleform.svg",
     }
 ];
 
@@ -134,7 +141,7 @@ export function NodeSelector({
                                         <img 
                                         src = {Icon}
                                         alt = {NodeType.label}
-                                        className = "size-5 object-mantain rounded-sm"
+                                        className = "size-5 object-contain rounded-sm"
                                         />
                                     ): (
                                         <Icon className = "size-5" />
@@ -168,7 +175,7 @@ export function NodeSelector({
                                         <img 
                                         src = {Icon}
                                         alt = {NodeType.label}
-                                        className = "size-5 object-mantain rounded-sm"
+                                        className = "size-5 object-contain rounded-sm"
                                         />
                                     ): (
                                         <Icon className = "size-5" />

@@ -10,6 +10,7 @@ import z from "zod";
 import { Workflow } from "lucide-react";
 import { NodeType } from "@/generated/prisma";
 import { inngest } from "@/inngest/client";
+import { sendWorkflowExecution } from "@/inngest/utils";
 
 
 export const workflowsRouter = createTRPCRouter({
@@ -23,10 +24,10 @@ export const workflowsRouter = createTRPCRouter({
                 userId: ctx.auth.user.id,
             },
         });
-        await inngest.send({
-            name: "workflows/execute.workflow",
-            data: { workflowId: input.id,},
-        });
+
+        await sendWorkflowExecution({
+            workflowId: input.id
+        })
         return workflow;
     }),
 
