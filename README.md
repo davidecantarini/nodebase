@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nodebase – n8n clone / Workflow Automation Tool
+
+## Description
+This project is a **replica of n8n**, created as a learning project to understand how workflow automation platforms work internally. It allows users to visually create, connect, and execute workflows with multiple nodes, inspired by n8n’s interface and functionality.
+
+The project is **educational**, aiming to explore backend/frontend interaction, authentication, database management, and event-driven workflow execution.
+
+---
+
+## Tech Stack
+- **Next.js & React** – Frontend framework for server-side rendering and React components
+- **TypeScript** – Strongly typed JavaScript for frontend and backend
+- **React Flow** – Drag-and-drop visual workflow editor
+- **Inngest** – Event-driven architecture for workflow execution
+- **Prisma** – ORM for database management
+- **tRPC** – Type-safe API communication between frontend and backend
+- **BetterAuth** – Authentication and session management
+
+---
+
+## Features
+- Drag-and-drop workflow editor using React Flow
+- Event-driven execution of workflow nodes (Inngest)
+- User authentication and session management (BetterAuth)
+- CRUD operations for workflows via Prisma + tRPC
+- Type-safe frontend-backend communication
+- Workflow execution logging and history tracking
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js >= 18
+- npm or yarn
+- PostgreSQL or compatible database
 
+### Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/n8n-clone.git
+cd n8n-clone
+```
+### Install Dependencies 
+```bash
+npm install
+# or
+yarn install
+```
+### Configure environment variables:
+Create a .env file based on .env.example and set:
+```bash
+DATABASE_URL=your_database_url
+NEXTAUTH_SECRET=your_secret_key
+INNGEST_KEY=your_key
+```
+
+### Run database migrations:
+```bash
+npx prisma migrate dev
+```
+
+### Start the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+### Open http://localhost:3000 to view the app.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Create an account and log in
+- Create a new workflow using the drag-and-drop interface
+- Add and connect nodes
+- Execute workflows and view results in real-time
+- Edit or delete workflows as needed
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Architecture Overview
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Frontend: Next.js + React Flow for workflow visualization
+- Backend: Next.js API routes + tRPC for type-safe communication
+- Database: PostgreSQL managed with Prisma
+- Workflow Execution: Inngest handles asynchronous node execution
+- Authentication: BetterAuth manages user sessions and access
